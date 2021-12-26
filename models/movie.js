@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const MovieSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
+    vedio: { type: String, required: true },
     desc: { type: String },
     img: { type: String },
     imgTitle: { type: String },
     imgSm: { type: String },
     trailer: { type: String },
-    vedio: { type: String, required: true },
     year: { type: String },
     limit: { type: Number },
     genre: { type: String },

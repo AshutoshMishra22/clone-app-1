@@ -10,7 +10,7 @@ function verify(req, res, next) {
       next();
     });
   } else {
-    res.status(401).json("You are not validated");
+    res.status(401).json("You are not autherized.");
   }
 }
 
