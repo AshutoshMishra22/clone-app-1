@@ -1,10 +1,11 @@
 {
-  "name": "server",
+  "name": "clone-app-1",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node server.js",
+    "devStart": "nodemon index.js"
   },
   "keywords": [],
   "author": "AshutoshMishraofficial22@gmail.com",
