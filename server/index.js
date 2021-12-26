@@ -25,5 +25,5 @@ app.use("/api/movies", movieRoute); //routes to particular module for particular
 app.use("/api/lists", listRoute); //routes to particular module for particular api call
 
 app.listen(port, () => {
-  console.log("Backend Server is UP!! ");
+  console.log("Server i running at ", port);
 });
