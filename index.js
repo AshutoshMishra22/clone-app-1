@@ -14,13 +14,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() =>
-    console.log(
-      "%c Auth ",
-      "color: white; background-color: #2274A5",
-      "Database Connection Successfull"
-    )
-  )
+  .then(() => console.log("Database Connection Successfull"))
   .catch((err) => console.error("Failed to Connect Database", err));
 
 app.use(express.json()); //to enable express to accept json request body
