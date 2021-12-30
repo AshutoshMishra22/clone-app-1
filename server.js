@@ -6,8 +6,10 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const movieRoute = require("./routes/movie");
 const listRoute = require("./routes/list");
+const Cors = require("cors");
 
 dotenv.config();
+
 const port = process.env.PORT || 8080;
 mongoose
   .connect(process.env.MONGO_DB_URL, {
@@ -18,6 +20,7 @@ mongoose
   .catch((err) => console.error("Failed to Connect Database", err));
 
 app.use(express.json()); //to enable express to accept json request body
+app.use(Cors()); // to prevent CORS issue
 
 app.use("/api/auth", authRoute); //routes to particular module for particular api call
 app.use("/api/users", userRoute); //routes to particular module for particular api call

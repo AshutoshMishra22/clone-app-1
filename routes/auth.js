@@ -19,9 +19,14 @@ router.post("/register", async (req, res) => {
   });
   try {
     const user = await newUser.save();
-    res.status(201).json(user);
+    const { __v, _id, ...details } = user._doc;
+    res.status(201).json({ id: _id, ...details });
   } catch (error) {
-    res.status(500).json(error);
+    res
+      .status(400)
+      .json(
+        `User has been already registered. Hint: use another User Name and Email Address.`
+      );
   }
 });
 
