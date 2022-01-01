@@ -1,0 +1,130 @@
+.login {
+	padding-top: 5%;
+	display: flex;
+	width: 100%;
+	height: 89vh;
+}
+.login__fbText {
+	height: 200px;
+}
+.fbLoginLogo {
+	height: 100%;
+	width: 100%;
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+}
+.loginBoxContainer {
+	flex: 1;
+	height: 100%;
+	width: 396px;
+}
+.loginBoxContent {
+	align-items: center;
+	background-color: #fff;
+	border: none;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+	box-sizing: border-box;
+	margin: 40px 0 0;
+	padding: 20px 0 28px;
+	width: 450px;
+	height: auto;
+}
+.fbInfo {
+	display: flex;
+	align-self: center;
+	font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
+	font-size: 28px;
+	font-weight: normal;
+	line-height: 32px;
+	width: 500px;
+	padding-left: 5%;
+}
+#outlined-basic {
+	font-size: 17px;
+}
+#outlined-password-input {
+	font-size: 17px;
+}
+.buttonLogin {
+	background-color: #1877f2 !important;
+	border: none !important;
+	border-radius: 6px !important;
+	font-size: 20px !important;
+	line-height: 46px !important;
+	margin: 12px !important;
+	width: 94%;
+	color: white !important;
+	text-transform: none;
+}
+
+.buttonRegister {
+	border: none !important;
+	border-radius: 6px !important;
+	font-size: 20px !important;
+	line-height: 46px !important;
+	margin: 12px !important;
+	margin-left: 86px !important;
+	width: 60% !important;
+	color: white !important;
+	background-color: #36a420 !important;
+	border-color: #36a420 !important;
+	text-transform: none;
+}
+button:disabled,
+button[disabled] {
+	border: 1px solid #999999 !important;
+	background-color: #cccccc !important;
+	color: #666666 !important;
+	pointer-events: unset;
+	cursor: pointer;
+}
+.horizontalLine {
+	margin: 0 16px 16px;
+}
+.modal1 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	backdrop-filter: blur(3px);
+	z-index: 999;
+	@media (min-width: 768px) {
+		position: fixed;
+		overflow-y: scroll;
+	}
+}
+.closeIcon {
+	position: absolute;
+	right: 32px;
+	top: 34px;
+	font-size: 30px !important;
+	color: grey;
+	cursor: pointer;
+}
+#modal-modal-title {
+	color: #1c1e21;
+	font-family: SFProDisplay-Bold, Helvetica, Arial, sans-serif;
+	font-size: 32px;
+	line-height: 38px;
+	margin-bottom: 0;
+	font-weight: 600;
+}
+.regHorizontalLine {
+	margin: 16px 0;
+}
+.errorPass {
+	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+	font-weight: 400;
+	font-size: 0.75rem;
+	line-height: 1.66;
+	letter-spacing: 0.03333em;
+	text-align: left;
+	margin-top: 3px;
+	margin-right: 14px;
+	margin-bottom: 0;
+	margin-left: 14px;
+	color: #d32f2f;
+}

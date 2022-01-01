@@ -57,3 +57,13 @@ body {
   border: 1px solid #794d1f;
   border-radius: 8px;
 }
+
+.app__body {
+  display: flex;
+}
+.errMsg {
+  color: red;
+}
+.successMsg {
+  color: green;
+}
