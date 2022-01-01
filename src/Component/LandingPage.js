@@ -1,21 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-
-import { Resizable } from "rc-easyui";
 import ReactSplit, { SplitDirection } from "@devbookhq/splitter";
 import Form from "./Form";
 import HomePage from "./HomePage";
-import {
-  Flex,
-  SplitContainer,
-  LeftContainer,
-  RightContainer,
-  BottomContainer,
-} from "./Style";
+import { Flex } from "./Style";
 
 function LandingPage(props) {
   const {
-    store: { addNewFeedRes, successfulCount, failedCount },
+    store: { successfulCount, failedCount },
   } = props;
   // useEffect(() => {
   //   document.getElementById("feed-list").scrollTo({
@@ -23,9 +15,6 @@ function LandingPage(props) {
   //     behavior: "smooth",
   //   });
   // }, [addNewFeedRes]);
-  const resizePropsLeftContainer = { minWidth: 300, minHeight: 400 };
-  const resizePropsRightContainer = { minWidth: 100, minHeight: 100 };
-  const resizePropsBottomContainer = { minWidth: 100, minHeight: 50 };
   return (
     <ReactSplit direction={SplitDirection.Vertical}>
       <ReactSplit direction={SplitDirection.Horizontal}>
