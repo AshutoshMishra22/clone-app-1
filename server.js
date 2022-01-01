@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const movieRoute = require("./routes/movie");
 const listRoute = require("./routes/list");
+const feedRoute = require("./routes/feed");
 const Cors = require("cors");
 
 dotenv.config();
@@ -26,7 +27,8 @@ app.use("/api/auth", authRoute); //routes to particular module for particular ap
 app.use("/api/users", userRoute); //routes to particular module for particular api call
 app.use("/api/movies", movieRoute); //routes to particular module for particular api call
 app.use("/api/lists", listRoute); //routes to particular module for particular api call
+app.use("/api/feed", feedRoute); //routes to particular module for particular api call
 
 app.listen(port, () => {
-  console.log("Server i running at ", port);
+  console.log("Server is running at ", port);
 });
