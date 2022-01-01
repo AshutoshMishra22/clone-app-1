@@ -1,6 +1,6 @@
 import * as axio from "axios";
 
 const axios = axio.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: "https://clone-app-node-1.herokuapp.com/",
 });
 export default axios;
