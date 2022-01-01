@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { Resizable } from "rc-easyui";
 import Form from "./Form";
+import HomePage from "./HomePage";
 import { Flex, LeftContainer, RightContainer, BottomContainer } from "./Style";
 
 function LandingPage(props) {
   const {
-    store: { successfulCount, failedCount },
+    store: { addNewFeedRes, successfulCount, failedCount },
   } = props;
-
+  useEffect(() => {
+    console.log("Rendering with ", addNewFeedRes);
+    document.getElementById("feed-list").scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [JSON.stringify(addNewFeedRes)]);
   const resizePropsLeftContainer = { minWidth: 300, minHeight: 400 };
   const resizePropsRightContainer = { minWidth: 100, minHeight: 100 };
   const resizePropsBottomContainer = { minWidth: 100, minHeight: 50 };
@@ -22,8 +29,8 @@ function LandingPage(props) {
           </LeftContainer>
         </Resizable>
         <Resizable {...resizePropsRightContainer}>
-          <RightContainer>
-            <div className="heading">Update</div>
+          <RightContainer id="feed-list">
+            <HomePage />
           </RightContainer>
         </Resizable>
       </Flex>

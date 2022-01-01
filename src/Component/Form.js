@@ -7,135 +7,118 @@ import Button from "@mui/material/Button";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
+import SendIcon from "@mui/icons-material/Send";
 import Input from "@mui/material/Input";
+import LoadingButton from "@mui/lab/LoadingButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { Flex } from "./Style";
-import { registerUser } from "../redux/actionCreators";
-
+import { addNewFeed } from "../redux/actionCreators";
+import { FormGroup, FormControl, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import bg from "./bg.jpg";
+export const useStyles = makeStyles((theme) => ({
+  uploadBtn: {
+    // display: "none",
+  },
+  container: {
+    width: "50%",
+    margin: "5% 0 0 25%",
+    "& > *": {
+      marginTop: 20,
+    },
+  },
+}));
 function Form(props) {
-  const { initiateRegister } = props;
-  const [state, setState] = useState({
-    userName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    showPassword: false,
-    showConfirmPassword: false,
-  });
+  const classes = useStyles();
   const {
-    userName,
-    email,
-    password,
-    confirmPassword,
-    showPassword,
-    showConfirmPassword,
-  } = state;
+    initiatePosting,
+    store: { isLoading },
+  } = props;
+  const [state, setState] = useState({
+    title: "",
+    content: "",
+    imgUrl: "",
+  });
+  const { title, content, imgUrl } = state;
 
   function updateState(fieldKey, value) {
     setState((prevState) => {
       return { ...prevState, [fieldKey]: value };
     });
   }
-  function initiateAddDetails(e) {
+  function initiateAddPost(e) {
     const payload = {
-      userName,
-      email,
-      password,
+      title,
+      content,
+      imgUrl: bg,
     };
-    initiateRegister(payload);
+    initiatePosting(payload);
     setState({
-      userName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      showPassword: false,
-      showConfirmPassword: false,
+      title: "",
+      content: "",
+      imgUrl: "",
     });
   }
   return (
-    <Flex direction="column" style={{ width: 300, height: 400 }}>
-      <Box
-        component="form"
-        sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
+    <FormGroup className={classes.container}>
+      <Typography variant="h5">Add New Post ...</Typography>
+      <FormControl>
+        <InputLabel>Title</InputLabel>
+        <Input
+          value={title}
+          onChange={(e) => updateState("title", e.target.value)}
+        />
+      </FormControl>
+      <FormControl>
+        <InputLabel>Content</InputLabel>
+        <Input
+          value={content}
+          onChange={(e) => updateState("content", e.target.value)}
+        />
+      </FormControl>
+      <LoadingButton
+        onClick={() => initiateAddPost()}
+        endIcon={<SendIcon />}
+        loading={isLoading}
+        loadingPosition="end"
+        variant="contained"
       >
-        <TextField
-          id="standard-basic"
-          label="User Name"
-          variant="standard"
-          value={userName}
-          onChange={(event) => updateState("userName", event.target.value)}
-        />
-        <TextField
-          id="standard-basic"
-          label="Email"
-          variant="standard"
-          value={email}
-          onChange={(event) => updateState("email", event.target.value)}
-        />
-        {/* Password */}
-        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+        Send
+      </LoadingButton>
+      {/* <label htmlFor="icon-button-file">
         <Input
-          id="standard-adornment-password"
-          type={showPassword ? "text" : "password"}
-          value={password}
-          onChange={(event) => updateState("password", event.target.value)}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() => updateState("showPassword", !showPassword)}
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
+          className={classes.uploadBtn}
+          accept="image/*"
+          id="icon-button-file"
+          type="file"
+          onClick={(e) => {
+            console.log("from input ", e);
+            updateState("imgUrl", e.target);
+          }}
         />
-        {/* Confirm Password */}
-        <InputLabel htmlFor="standard-adornment-password">
-          Confirm Password
-        </InputLabel>
-        <Input
-          id="standard-adornment-password"
-          type={showConfirmPassword ? "text" : "password"}
-          value={confirmPassword}
-          onChange={(event) =>
-            updateState("confirmPassword", event.target.value)
-          }
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() =>
-                  updateState("showConfirmPassword", !showPassword)
-                }
-              >
-                {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
-        />
-        <Button variant="contained" onClick={initiateAddDetails}>
-          Register
-        </Button>
-      </Box>
-    </Flex>
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="span"
+        >
+          <FileUploadIcon />
+        </IconButton>
+      </label>
+     */}
+    </FormGroup>
   );
 }
 
-// const mapStateToProps = ({ reducer }) => ({
-//   store: reducer,
-// });
+const mapStateToProps = ({ reducer }) => ({
+  store: reducer,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initiateRegister: (payload) => dispatch(registerUser(payload)),
+    initiatePosting: (payload) => dispatch(addNewFeed(payload)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

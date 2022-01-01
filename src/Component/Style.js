@@ -26,7 +26,13 @@ export const LeftContainer = styled.div`
   }
 `;
 
-export const RightContainer = styled(LeftContainer)``;
+export const RightContainer = styled(LeftContainer)`
+  overflow: overlay;
+  height: 500px;
+  .feed-container {
+    padding: 35px;
+  }
+`;
 export const BottomContainer = styled(LeftContainer)`
   background: #ffffff;
   p {

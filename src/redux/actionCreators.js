@@ -1,14 +1,33 @@
-import { requestRegister, successRegister, failureRegister } from "./actions";
+import {
+  requestaddFeed,
+  successaddFeed,
+  failureaddFeed,
+  requestupdateFeed,
+  successupdateFeed,
+  failureupdateFeed,
+} from "./actions";
 import axios from "./axios";
 
-export const registerUser = (payload) => (dispatch) => {
-  dispatch(requestRegister(payload));
+export const addNewFeed = (payload) => (dispatch) => {
+  dispatch(requestaddFeed(payload));
   axios
-    .post("/api/auth/register", payload)
+    .post("/api/feed/add", payload)
     .then((response) => {
-      dispatch(successRegister(response.data));
+      dispatch(successaddFeed(response.data));
     })
     .catch((error) => {
-      dispatch(failureRegister(error.response.data));
+      dispatch(failureaddFeed(error.response.data));
+    });
+};
+
+export const updateFeed = (payload) => (dispatch) => {
+  dispatch(requestupdateFeed(payload));
+  axios
+    .put(`/api/feed/update/${payload.id}`, payload)
+    .then((response) => {
+      dispatch(successupdateFeed(response.data));
+    })
+    .catch((error) => {
+      dispatch(failureupdateFeed(error.response.data));
     });
 };
