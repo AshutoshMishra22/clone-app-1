@@ -1,7 +1,7 @@
 import React from "react";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import LandingScreen from "Components1";
+import LandingPage from "Component/LandingPage";
 import { Box } from "@mui/material";
 import NestedSplit from "Component/NestefSplitter";
 
@@ -10,7 +10,7 @@ function App() {
     <Provider store={store}>
       <div className="app">
         <div className="splits">
-          <LandingScreen />
+          <LandingPage />
         </div>
       </div>
     </Provider>
