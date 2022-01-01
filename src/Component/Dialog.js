@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import {
-  FormGroup,
-  Typography,
-  FormControl,
-  InputLabel,
-  Input,
-} from "@mui/material";
+import { FormGroup, FormControl, InputLabel, Input } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +31,7 @@ export default function FormDialog(props) {
     if (compData) {
       setState(compData);
     }
-  }, [JSON.stringify(compData)]);
+  }, [compData]);
   return (
     <div>
       <Dialog open={open} onClose={handleClose}>

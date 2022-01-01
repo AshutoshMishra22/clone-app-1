@@ -1,27 +1,16 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import Input from "@mui/material/Input";
 import LoadingButton from "@mui/lab/LoadingButton";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { Flex } from "./Style";
 import { addNewFeed } from "../redux/actionCreators";
 import { FormGroup, FormControl, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import bg from "./bg.jpg";
+
 export const useStyles = makeStyles((theme) => ({
-  uploadBtn: {
-    // display: "none",
-  },
+  uploadBtn: {},
   container: {
     width: "50%",
     margin: "5% 0 0 25%",
@@ -52,7 +41,7 @@ function Form(props) {
     const payload = {
       title,
       content,
-      imgUrl: bg,
+      imgUrl,
     };
     initiatePosting(payload);
     setState({
