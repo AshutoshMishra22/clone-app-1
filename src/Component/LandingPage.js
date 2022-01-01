@@ -11,12 +11,11 @@ function LandingPage(props) {
     store: { addNewFeedRes, successfulCount, failedCount },
   } = props;
   useEffect(() => {
-    console.log("Rendering with ", addNewFeedRes);
     document.getElementById("feed-list").scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  }, [JSON.stringify(addNewFeedRes)]);
+  }, [addNewFeedRes]);
   const resizePropsLeftContainer = { minWidth: 300, minHeight: 400 };
   const resizePropsRightContainer = { minWidth: 100, minHeight: 100 };
   const resizePropsBottomContainer = { minWidth: 100, minHeight: 50 };
