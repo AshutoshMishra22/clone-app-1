@@ -13,8 +13,9 @@ const useStyles = makeStyles((theme) => ({
     // display: "none",
   },
   container: {
+    width: 300,
     "& > *": {
-      marginTop: 20,
+      marginTop: "30px !important",
     },
   },
 }));

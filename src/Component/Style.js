@@ -4,6 +4,16 @@ export const Flex = styled.div`
   display: flex;
   flex-direction: ${({ direction }) => direction || "row"};
 `;
+export const SplitContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-top;
+  border-radius: 8px;
+  background: #121114;
+`;
 
 export const LeftContainer = styled.div`
   position: relative;
@@ -40,4 +50,19 @@ export const BottomContainer = styled(LeftContainer)`
     line-height: 1.6;
     letter-spacing: 0.0075em;
   }
+`;
+
+export const Div = styled.div`
+  height: 100%;
+  width: 100%;
+
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-top;
+
+  border-radius: 8px;
+  background: #121114;
+
+  overflow-y: auto;
 `;
