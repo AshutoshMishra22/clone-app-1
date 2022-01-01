@@ -1,10 +1,19 @@
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
-  color: #020202;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #f5f5f5;
+	color: #020202;
+}
+.app__body {
+	display: flex;
+}
+.errMsg {
+	color: red;
+}
+.successMsg {
+	color: green;
 }
