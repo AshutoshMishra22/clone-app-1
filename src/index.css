@@ -1,69 +1,19 @@
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  outline: none;
-}
-
-html,
 body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  color: rgb(0, 0, 0);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
-  background: #ffffff;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #f5f5f5;
+	color: #020202;
 }
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#root {
-  margin: 0 auto;
-  height: 100%;
-  width: 100%;
-}
-
-.app {
-  padding: 16px 8px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.split-selection {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.splits {
-  margin: 36px 0;
-  width: 100%;
-  height: 100%;
-  max-height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #794d1f;
-  border-radius: 8px;
-}
-
 .app__body {
-  display: flex;
+	display: flex;
 }
 .errMsg {
-  color: red;
+	color: red;
 }
 .successMsg {
-  color: green;
+	color: green;
 }

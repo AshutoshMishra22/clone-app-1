@@ -13,10 +13,9 @@ export const useStyles = makeStyles((theme) => ({
   uploadBtn: {},
   container: {
     width: "50%",
-    height: 500,
     margin: "5% 0 0 25%",
     "& > *": {
-      marginTop: "20px !important",
+      marginTop: 20,
     },
   },
 }));

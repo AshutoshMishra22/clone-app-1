@@ -18,7 +18,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { makeStyles } from "@mui/styles";
 import { updateFeed } from "../redux/actionCreators";
-import { Div } from "./Style";
+import { Flex } from "./Style";
 import Dialog from "./Dialog";
 const useStyles = makeStyles((theme) => ({
   title: { fontFamily: "Montserrat", fontSize: 20 },
@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
     padding: "15px 10px",
     margin: "6px 0",
-    overflow: "unset !important",
   },
   wrapper: {
     maxWidth: 400,
@@ -66,7 +65,7 @@ function HomePage(props) {
     updateState("compData", {});
   }
   return (
-    <Div>
+    <Flex direction="column" className="feed-container">
       {addNewFeedRes.map((feed) => {
         const randColor = colors[Math.floor(Math.random() * colors.length)];
         const variantColor =
@@ -153,7 +152,7 @@ function HomePage(props) {
         handleConfirm={handleConfirm}
         handleClose={handleClose}
       />
-    </Div>
+    </Flex>
   );
 }
 

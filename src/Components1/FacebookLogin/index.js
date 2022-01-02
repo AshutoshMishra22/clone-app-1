@@ -20,6 +20,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { clearFormData } from '../../redux/actions';
 const LoginFb = (props) => {
 	const { store, handleChange, clearFormData, initiateUserLogin } = props;
+	const { errorMessage } = store;
 	const [open, setOpen] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
 	let emailErr = store[EMAIL].err;
@@ -85,6 +86,12 @@ const LoginFb = (props) => {
 						noValidate
 						autoComplete="off"
 					>
+						{errorMessage && errorMessage.length > 0 && (
+							<p className="errMsg">{errorMessage}</p>
+						)}
+						{/* {userDetails && userDetails._id && (
+							<p className="successMsg">User Registered Successfully</p>
+						)} */}
 						<TextField
 							id={
 								emailErr.length > 0
