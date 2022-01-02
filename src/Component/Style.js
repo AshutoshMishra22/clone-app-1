@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Flex = styled.div`
   display: flex;
   flex-direction: ${({ direction }) => direction || "row"};
+  place-content: center;
 `;
 export const SplitContainer = styled.div`
   height: 100%;
@@ -55,14 +56,23 @@ export const BottomContainer = styled(LeftContainer)`
 export const Div = styled.div`
   height: 100%;
   width: 100%;
-
+ 
   padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-top;
 
   border-radius: 8px;
-  background: #121114;
+  background: #d0efed47;
 
   overflow-y: auto;
 `;
+
+export const Container = styled.div`
+
+`
+
+export const ImageUploaded = styled.img`
+   height: 190px;
+   width: 100%;
+`
