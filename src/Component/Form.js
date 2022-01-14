@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addNewFeed } from "../redux/actionCreators";
 import { makeStyles } from "@mui/styles";
@@ -51,7 +51,7 @@ function Form(props) {
   const classes = useStyles();
   const {
     initiatePosting,
-    store: { isLoading, addNewFeedRes },
+    store: { isLoading },
   } = props;
   const [state, setState] = useState({
     title: "",
@@ -60,15 +60,6 @@ function Form(props) {
   });
   const [image, setImage] = useState({ preview: "", raw: "" });
   const { title, content, imgUrl } = state;
-
-  useEffect(() => {
-    console.log(isLoading, " isLoading");
-    if (isLoading) {
-      updateState("title", "");
-      updateState("content", "");
-      updateState("imgUrl", "");
-    }
-  }, [isLoading]);
 
   function updateState(fieldKey, value) {
     setState((prevState) => {
@@ -81,12 +72,13 @@ function Form(props) {
       content,
       imgUrl,
     };
-    initiatePosting(payload);
     setState({
       title: "",
       content: "",
       imgUrl: "",
     });
+    setImage({ preview: "", raw: "" });
+    initiatePosting(payload);
   }
 
   const handleChange = (e) => {
@@ -130,6 +122,7 @@ function Form(props) {
           name=''
           id='text1'
           placeholder=' '
+          value={title}
           onChange={(e) => updateState("title", e.target.value)}
         />
         <label htmlFor='text1'>Title</label>
@@ -140,6 +133,7 @@ function Form(props) {
           name=''
           id='text2'
           placeholder=' '
+          value={content}
           onChange={(e) => updateState("content", e.target.value)}
         />
         <label htmlFor='text2'>Message</label>
