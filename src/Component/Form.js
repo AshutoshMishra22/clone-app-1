@@ -1,13 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { addNewFeed } from "../redux/actionCreators";
 import { makeStyles } from "@mui/styles";
-import {
-  Grid,
-  Avatar,
-  Typography,
-  Button,
-} from "@material-ui/core";
+import { Grid, Avatar, Typography, Button } from "@material-ui/core";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -26,39 +21,37 @@ export const useStyles = makeStyles((theme) => ({
       marginTop: "20px !important",
     },
   },
-  headerStyle : { margin: 0 },
-  uploadStyle : { margin: "auto", marginTop: "16px" },
-   buttonStyle: {
+  headerStyle: { margin: 0 },
+  uploadStyle: { margin: "auto", marginTop: "16px" },
+  buttonStyle: {
     display: "flex",
     justifyContent: "space-between",
     width: "360px",
-    margin: '16px auto'
+    margin: "16px auto",
   },
   imagStyle: {
     height: 100,
-    width: 100
+    width: 100,
   },
-  sendButtonStyle :  {
-    display: 'flex !important',
-    margin: 'auto !important',
-    backgroundColor: '#1bbeff !important'
-
-  },
-
-  mainContainer : {
-     overflowX : 'auto'
+  sendButtonStyle: {
+    display: "flex !important",
+    margin: "auto !important",
+    backgroundColor: "#1bbeff !important",
   },
 
-  successText : {
-    paddingTop: 10
-  }
-   
+  mainContainer: {
+    overflowX: "auto",
+  },
+
+  successText: {
+    paddingTop: 10,
+  },
 }));
 function Form(props) {
   const classes = useStyles();
   const {
     initiatePosting,
-    store: { isLoading },
+    store: { isLoading, addNewFeedRes },
   } = props;
   const [state, setState] = useState({
     title: "",
@@ -67,6 +60,15 @@ function Form(props) {
   });
   const [image, setImage] = useState({ preview: "", raw: "" });
   const { title, content, imgUrl } = state;
+
+  useEffect(() => {
+    console.log(isLoading, " isLoading");
+    if (isLoading) {
+      updateState("title", "");
+      updateState("content", "");
+      updateState("imgUrl", "");
+    }
+  }, [isLoading]);
 
   function updateState(fieldKey, value) {
     setState((prevState) => {
@@ -88,11 +90,11 @@ function Form(props) {
   }
 
   const handleChange = (e) => {
-    if(e.target.files.length !== 0){
-    setImage({
-      preview: URL.createObjectURL(e.target.files[0]),
-      raw: e.target.files[0],
-    });
+    if (e.target.files.length !== 0) {
+      setImage({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
     }
   };
 
@@ -100,71 +102,77 @@ function Form(props) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", image.raw);
-    updateState("imgUrl", image.preview)
+    updateState("imgUrl", image.preview);
   };
 
   const uploadButtonStyle = {
-    height: '16px',
-    marginTop: '14px',
-    fontSize: '12px'
+    height: "16px",
+    marginTop: "14px",
+    fontSize: "12px",
   };
 
   const avatarStyle = { backgroundColor: "#1bbeff", marginTop: "30px" };
-  
+
   return (
     <div className={classes.mainContainer}>
-      <Grid align="center">
+      <Grid align='center'>
         <Avatar style={avatarStyle}>
           <AddCircleOutlineOutlinedIcon />
         </Avatar>
         <h2 className={classes.headerStyle}>ADD POST</h2>
-        <Typography variant="caption" gutterBottom>
+        <Typography variant='caption' gutterBottom>
           Please add your new post here !
         </Typography>
       </Grid>
-      <div className="input-group">
+      <div className='input-group'>
         <input
-          type="text"
-          name=""
-          id="text1"
-          placeholder=" "
+          type='text'
+          name=''
+          id='text1'
+          placeholder=' '
           onChange={(e) => updateState("title", e.target.value)}
         />
-        <label htmlFor="text1">Title</label>
+        <label htmlFor='text1'>Title</label>
       </div>
-      <div className="input-group">
+      <div className='input-group'>
         <input
-          type="text"
-          name=""
-          id="text2"
-          placeholder=" "
+          type='text'
+          name=''
+          id='text2'
+          placeholder=' '
           onChange={(e) => updateState("content", e.target.value)}
         />
-        <label htmlFor="text2">Message</label>
+        <label htmlFor='text2'>Message</label>
       </div>
       <div>
         <div className={classes.buttonStyle}>
-          <label htmlFor="upload-button">
+          <label htmlFor='upload-button'>
             {image.preview ? (
-              <div className={classes.successText}>Added Successfully, Click to Upload Button</div>
+              <div className={classes.successText}>
+                Added Successfully, Click Upload Button to Confirm Upload
+              </div>
             ) : (
               <>
                 <ListItemButton className={classes.uploadStyle}>
                   <ListItemIcon>
                     <InboxIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Upload your photo" />
+                  <ListItemText primary='Upload your photo' />
                 </ListItemButton>
               </>
             )}
           </label>
           <input
-            type="file"
-            id="upload-button"
+            type='file'
+            id='upload-button'
             style={{ display: "none" }}
             onChange={handleChange}
           />
-          <Button variant="outlined" onClick={handleUpload} style={uploadButtonStyle}>
+          <Button
+            variant='outlined'
+            onClick={handleUpload}
+            style={uploadButtonStyle}
+          >
             Upload
           </Button>
         </div>
@@ -173,8 +181,8 @@ function Form(props) {
         onClick={() => initiateAddPost()}
         endIcon={<SendIcon />}
         loading={isLoading}
-        loadingPosition="end"
-        variant="contained"
+        loadingPosition='end'
+        variant='contained'
         className={classes.sendButtonStyle}
       >
         Send

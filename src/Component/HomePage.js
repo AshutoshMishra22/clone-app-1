@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -51,6 +51,12 @@ function HomePage(props) {
   const colors = [red, blue, green, yellow];
   const colorVariant = [100, 200, 300, 400, 500, 450, 600];
   const classes = useStyles();
+  useEffect(() => {
+    document.getElementById("feed-list").scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [addNewFeedRes]);
   function updateState(fieldKey, value) {
     setState((prevState) => {
       return { ...prevState, [fieldKey]: value };
@@ -68,7 +74,7 @@ function HomePage(props) {
     updateState("compData", {});
   }
   return (
-    <Div>
+    <Div id='feed-list'>
       {addNewFeedRes?.length > 0 ? (
         addNewFeedRes.map((feed) => {
           const randColor = colors[Math.floor(Math.random() * colors.length)];
@@ -84,15 +90,22 @@ function HomePage(props) {
               : upDate.toLocaleTimeString()
           } `;
           return (
-            <Card sx={{ maxWidth: 345 }} className={classes.cover} key={feed.id}>
+            <Card
+              sx={{ maxWidth: 345 }}
+              className={classes.cover}
+              key={feed.id}
+            >
               <CardHeader
                 avatar={
-                  <Avatar sx={{ bgcolor: variantColor }} aria-label="recipe">
+                  <Avatar sx={{ bgcolor: variantColor }} aria-label='recipe'>
                     {feed.title.substring(0, 1).toUpperCase()}
                   </Avatar>
                 }
                 action={
-                  <IconButton aria-label="settings" onClick={(e)=> console.log(e)}>
+                  <IconButton
+                    aria-label='settings'
+                    onClick={(e) => console.log(e)}
+                  >
                     <MoreVertIcon
                       onClick={(e) => {
                         updateState("compData", feed);
@@ -100,8 +113,8 @@ function HomePage(props) {
                       }}
                     />
                     <Menu
-                      id="demo-positioned-menu"
-                      aria-labelledby="demo-positioned-button"
+                      id='demo-positioned-menu'
+                      aria-labelledby='demo-positioned-button'
                       anchorEl={anchorEl}
                       open={anchorEl !== ""}
                       onClose={() => updateState("anchorEl", "")}
@@ -126,20 +139,20 @@ function HomePage(props) {
                 title={feed.title}
                 subheader={timeStamp}
               />
-              {feed.imgUrl && <ImageUploaded src={feed.imgUrl} alt="image" />}
+              {feed.imgUrl && <ImageUploaded src={feed.imgUrl} alt='image' />}
               <CardContent>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant='body2' color='text.secondary'>
                   {feed.content}
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>
-                <Tooltip title="Add to Favorites">
-                  <IconButton aria-label="add to favorites">
+                <Tooltip title='Add to Favorites'>
+                  <IconButton aria-label='add to favorites'>
                     <FavoriteIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="Share">
-                  <IconButton aria-label="share">
+                <Tooltip title='Share'>
+                  <IconButton aria-label='share'>
                     <ShareIcon />
                   </IconButton>
                 </Tooltip>
@@ -149,9 +162,9 @@ function HomePage(props) {
         })
       ) : (
         <Box sx={{ width: 300, margin: "auto" }}>
-          <Skeleton variant="text" />
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="rectangular" width={210} height={118} />
+          <Skeleton variant='text' />
+          <Skeleton variant='circular' width={40} height={40} />
+          <Skeleton variant='rectangular' width={210} height={118} />
         </Box>
       )}
       <Dialog
